@@ -1,9 +1,7 @@
 import { useCart } from "../context/CartContext"
 
 export default function ProductCard(props) {
-    const {addToCart}=useCart()
-    console.log(addToCart)
-    return (
+     return (
         <div className="card shadow-sm h-100 text-center">
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
