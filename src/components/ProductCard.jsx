@@ -1,12 +1,14 @@
-import { useCart } from "../context/CartContext"
+import { useCart } from '../context/CartContext.jsx'
 
-export default function ProductCard(props) {
-     return (
+export default function ProductCard({product}) {
+    const { addToCart } = useCart();
+
+    return (
         <div className="card shadow-sm h-100 text-center">
             <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
-                <p className="card-text">${props.price}</p>
-                <button className="btn btn-primary" >Add to Cart</button>
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">${product.price}</p>
+                <button className="btn btn-primary" onClick={()=>addToCart(product)}>Add to Cart</button>
             </div>
         </div>
     )
