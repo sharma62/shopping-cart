@@ -1,12 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
+    const [cart, setCard] = useState([])
     // Add to cart
     const addToCart = (product) => {
-        setCart((prev) => {
+        setCard((prev) => {
             const existing = prev.find((item) => item.id === product.id)
             if (existing) {
                 return prev.map((item) => item.id === product.id ? { ...item, qty: item.qty + 1 } : item)
@@ -16,27 +16,10 @@ export const CartProvider = ({ children }) => {
 
         })
     }
-
-    // remove from cart
-    const removeFromCart = (id) => {
-        setCart((prev) => prev.filter((item) => item.id !== id))//This code removes an item from cart by creating a new array that excludes the matching id. 
-    }
-    // update qty
-    const updateQty = (id, qty) => {
-        setCart((prev) =>
-            prev.map((item) => (item.id === id ? { ...item, qty } : item))
-        )
-    }
-    // final amount
-    const final = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
-
-    localStorage.setItem("cart", JSON.stringify(cart))
-
-
     return (
-        <CartContext.Provider value={{ cart, removeFromCart, updateQty, addToCart, final }}>
+        <CartContext.Provider value={{ cart, setCard ,addToCart}}>
             {children}
-        </CartContext.Provider>
+        </CartContext.Provider> 
     )
 }
 

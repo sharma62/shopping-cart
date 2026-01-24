@@ -1,8 +1,10 @@
-export default function CartPage() {
-    return (
-        <div className="container mt-4">
-            <h1 className="mb-4">Shopping Cart</h1>
-            <div className="container">
+import { useCart } from "../context/CartContext"
+
+export default function Card(){
+    const {cart}=useCart()
+    console.log(cart)
+    return(
+         <div className="container">
                 <h2 className="mb-3">Your Cart</h2>
                 <table className="table table-bordered align-middle">
                     <thead className="table-light">
@@ -51,7 +53,5 @@ export default function CartPage() {
                 </table>
                 <div className="text-end fw-bold fs-5">Total: $600.00</div>
             </div>
-        </div>
-
     )
 }
